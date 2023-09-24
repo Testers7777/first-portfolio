@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+@font-face {
+    font-family: "dfont";
+    src: url("LiberRegular.ttf") format("truetype");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+ /* palette.png */
+:root {
+  --white: #fffff1;
+  --yellow: #ffd700;
+  --blue: #00bFFF;
+  --green: #008000
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--green);
+    color: var(--white);
+}
+
+h2 {
+    font-family: "dfont", sans-serif;
+    font-size: 100px;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    --start-color: var(--yellow);
+    --end-color: var(--blue);
+    --start-color-2: var(--green);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(-45deg, var(--start-color), var(--end-color), var(--start-color-2), var(--start-color), var(--end-color));
+    animation: gradient 5s ease-in-out infinite;
+    background-size: 400% 400%;
+}
+
+.desc {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: bob 5s ease-in-out infinite;
+  text-shadow: 0px 2px 4px rgba(0, 0, 0, 10);
+  white-space: nowrap;
+}
+
+@keyframes bob {
+  50% {
+    margin-top: 50px;
+  }
+  100% {
+    margin-bottom: 50px;
+  }
+}
+
+@keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+  
+    50% {
+      background-position: 100% 50%;
+    }
+  
+    100% {
+      background-position: 0% 50%;
+    }
+  }
