@@ -61,7 +61,13 @@ button {
   height: 60px;
   width: 60px;
   border-radius: 50%;
-  background-color: #2a3038
+  background-color: #2a3038;
+  overflow: hidden; /* Empêche le dépassement des éléments enfants */
+}
+
+button svg {
+  width: 40px; /* Remplit la largeur du bouton */
+  height: 40px; /* Remplit la hauteur du bouton */
 }
 svg g {
   fill: var(--cyan);
@@ -77,6 +83,8 @@ button g {
 button:hover g {
   fill: var(--blue);
   transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 20px var(--blue);
+  text-shadow: 0 0 100px var(--blue);
 }
 .social {
   position: absolute;
@@ -93,7 +101,6 @@ button svg {
   left: 37.5%;
   transform: translate(-50%, -50%);
 }
-
 @keyframes bob {
   50% {
     margin-top: 50px;
