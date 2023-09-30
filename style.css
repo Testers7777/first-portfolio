@@ -54,55 +54,99 @@ h2 {
   text-shadow: 0px 2px 4px rgba(0, 0, 0, 10);
   white-space: nowrap;
 }
-button {
-  border: 3px solid transparent;
-  transition: all 0.3s ease-in-out;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  background-color: #2a3038;
-  overflow: hidden;
+.aboutchess {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid var(--cyan);
+  color: white;
+  background-color: transparent;
+  position: absolute;
+  top: 63%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-button svg {
+
+.sweep-to-top {
+  overflow: hidden;
+  background-image: linear-gradient(to bottom, var(--cyan), var(--cyan));
+  background-repeat: no-repeat;
+  background-position: 0 -100%;
+  background-size: 100% 200%;
+  transition: background-position 0.25s ease-in-out;
+  height: 25px;
+  width: 90px;
+}
+
+.sweep-to-top:hover {
+  background-position: 0 0;
+  cursor: pointer;
+}
+
+.foot{
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  height: 10vh;
+}
+
+ul.icons {
+  margin: 0;
+  padding: 0;
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
 }
-svg g {
-  fill: var(--cyan);
+
+ul.icons li {
+  list-style: none;
+  margin: 0 5px;
 }
-button:hover {
-  border: 3px solid var(--blue);
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 20px var(--blue);
+
+ul.icons li a {
+  position: relative; 
+  display: block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 53px;
+  background: #2a3038;
+  border-radius: 50%;
+  font-size: 30px;
+  color: white;
+  transition: .5s;
 }
-button g {
-  transition: all 0.3s ease-in-out;
-}
-button:hover g {
-  fill: var(--blue);
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 20px var(--blue);
-  text-shadow: 0 0 100px var(--blue);
-}
-.social {
+
+ul.icons li a::before {
+  content: '';
   position: absolute;
-  top: 95%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #2a3038;
+  transition: .5s;
+  transform: scale(.9);
+  z-index: -1;
 }
-.social button + button {
-  margin-left: 10px;
+
+ul.icons li a:hover::before {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #2a3038;
 }
-button svg {
-  position: relative;
-  top: 41%;
-  left: 37.5%;
-  transform: translate(-50%, -50%);
+
+ul.icons li a:hover {
+  color: var(--blue);
+  box-shadow: 0 0 5px var(--blue);
+  text-shadow: 0 0 5px var(--blue);
 }
+
 @keyframes bob {
   50% {
     margin-top: 50px;
