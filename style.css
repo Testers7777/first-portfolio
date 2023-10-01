@@ -70,6 +70,123 @@ h2 {
   transform: translate(-50%, -50%);
 }
 
+.menu {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 2px solid white;
+  color: white;
+  background-color: transparent;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chess {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.chessFirstRow, .chessSecondRow, .chessThirdRow {
+  display: flex;
+}
+.chessBullet, .chessBlitz, .chessRapid {
+  background-color: #2F3136;
+  width: 120px;
+  height: 75px;
+  border-radius: 20px;
+}
+.chessFirstRow div + div, .chessSecondRow div + div, .chessThirdRow div + div {
+  margin-left: 10px;
+}
+.chessFirstRow + .chessSecondRow {
+  margin-top: 10px;
+}
+.chessSecondRow + .chessThirdRow {
+  margin-top: 10px;
+}
+.chessBulletGames, .chessBulletRating, .chessBlitzGames, .chessBlitzRating, .chessRapidGames, .chessRapidRating {
+  background-color: #2F3136;
+  width: 120px;
+  height: 75px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chessPp {
+  height: 120px;
+  width: 120px;
+  border: 5px solid #2F3136;
+  border-radius: 50%;
+  position: absolute;
+  top: -28%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chessUsername {
+  background-color: #2F3136;
+  height: 30px;
+  text-align: center;
+  width:100px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.chessLeague {
+  height: 50px;
+  width: 80px;
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chessModes {
+  display: flex;
+}
+
+.chessModes div + div {
+  margin-left: 10px;
+}
+
+.chessModes + .chessFirstRow {
+  margin-top: 10px;
+}
+
+.chessModes div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chessModes div {
+  background-color: #2F3136;
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.chessBullet img, .chessBlitz img, .chessRapid img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 65px;
+  width: 65px;
+}
+
 .sweep-to-top {
   overflow: hidden;
   background-image: linear-gradient(to bottom, white, white);
@@ -149,6 +266,10 @@ ul.icons li a:hover {
   color: white;
   box-shadow: 0 0 5px white;
   text-shadow: 0 0 5px white;
+}
+
+::selection {
+  background-color: #004f69;
 }
 
 @keyframes bob {
