@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIISLAY</title>
+    <link rel="stylesheet" href="assets/style/style.css">
+    <link rel="shortcut icon" href="./logo.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="assets/style/Hover-master/css/hover-min.css">
+    <script src="https://kit.fontawesome.com/3141ec3c54.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="chess">
+        <div class="chessProfil">
+            <div class="chessUsername">DIISLAY</div>
+            <img class="chessPp" src="https://images.chesscomfiles.com/uploads/v1/user/273087747.a4d0b778.200x200o.013df547f34c.jpg" alt="">
+            <img class="chessLeague" src="assets/images/bronze.png" alt="">
+        </div>
+        <div class="chessModes">
+            <div class="chessNothing"></div>
+            <div class="chessGames">Games</div>
+            <div class="chessRating">Rating</div>
+        </div>
+        <div class="chessFirstRow">
+            <div class="chessBullet"><img src="assets/images/bullet.png" alt="" srcset=""></div>
+            <div class="chessBulletGames">Soon</div>
+            <div class="chessBulletRating">Soon</div>
+        </div>
+        <div class="chessSecondRow">
+            <div class="chessBlitz"><img src="assets/images/blitz.png" alt="" srcset=""></div>
+            <div class="chessBlitzGames">Soon</div>
+            <div class="chessBlitzRating">Soon</div>
+        </div>
+        <div class="chessThirdRow">
+            <div class="chessRapid"><img src="assets/images/rapid.png" alt="" srcset=""></div>
+            <div class="chessRapidGames">Soon</div>
+            <div class="chessRapidRating">Soon</div>
+        </div>
+    </div>
+    <div class="linksabout">
+        <a href="/index.html" rel="noopener noreferrer"><button class="menu sweep-to-top">Menu</button></a>
+    </div>
+    <div class="foot">
+        <ul class="icons">
+            <li>
+                <a class="f" id="chess" href="https://www.chess.com/member/diislay">
+                    <i class="fa-solid fa-chess-pawn"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="script.js"></script>
+    <script>
+    const options = {
+        method: 'GET',
+    };
+    window.addEventListener('DOMContentLoaded', () => {
+        const chessPp = document.querySelector('.chessPp');
+        const chessName = document.querySelector('.chessName');
+        fetch(`https://api.chess.com/pub/player/diislay`, options)
+            .then(response => response.json())
+            .then(data => {
+                chessPp.src = data.avatar
+                chessName.innerText = data.username
+            })
+    })</script>
+</body>
+
+</html>
