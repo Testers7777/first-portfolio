@@ -10,3 +10,9 @@ tippy('#github', {
     offset: [0, 12],
     arrow: false,
 });
+tippy('#chess', {
+    content: 'chess',
+    theme: "type",
+    offset: [0, 12],
+    arrow: false,
+});
