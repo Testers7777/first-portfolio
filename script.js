@@ -16,3 +16,7 @@ tippy('#chess', {
     offset: [0, 12],
     arrow: false,
 });
+
+window.addEventListener("contextmenu", function(event) {
+    event.preventDefault();
+});
