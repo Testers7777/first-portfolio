@@ -59,7 +59,6 @@
     const options = {
         method: 'GET',
     };
-    window.addEventListener('DOMContentLoaded', () => {
         const chessPp = document.querySelector('.chessPp');
         const chessName = document.querySelector('.chessUsername');
         const chessLeague = document.querySelector('.chessLeague');
@@ -85,8 +84,7 @@
                 chessBlitzGames.innerText = data.chess_blitz.record.win + data.chess_blitz.record.loss + data.chess_blitz.record.draw
                 chessRapidRating.innerText = data.chess_rapid.last.rating
                 chessRapidGames.innerText = data.chess_rapid.record.win + data.chess_rapid.record.loss + data.chess_rapid.record.draw
-            })
-    })</script>
+            })</script>
 </body>
 
 </html>
