@@ -101,6 +101,19 @@ h2 {
   cursor: pointer;
 }
 
+.pion {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-image: url('pion.png');
+  background-size: cover;
+  animation: fall linear infinite;
+}
+
+.pion:hover {
+  cursor: pointer;
+}
+
 @keyframes fall {
   to {
       transform: translateY(100vh) rotate(360deg);
