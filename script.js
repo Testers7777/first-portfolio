@@ -21,32 +21,28 @@ window.addEventListener("contextmenu", function(event) {
     event.preventDefault();
 });
 
-const options = {
-    method: 'GET',
+document.addEventListener('DOMContentLoaded', function() {
+    var options = {
+        strings: ["Hello !", "My name is Tiago", "I'm 14yo", "I'm a Front-end developer", "I code just for fun"],
+        typeSpeed: 50,
+        backSpeed: 25,
+        loop: true
+    };
+
+    var typed = new Typed("#typed-output", options);
+});
+
+const createLeaf = () => {
+    const leaf = document.createElement('div');
+    leaf.classList.add('leaf');
+    leaf.style.left = `${Math.random() * 100}vw`;
+    leaf.style.top = `${Math.random() * -100}vh`;
+    leaf.style.animationDuration = `${Math.random() * 10 + 5}s`;
+    document.body.appendChild(leaf);
+
+    setTimeout(() => {
+        leaf.remove();
+    }, (Math.random() * 10 + 5) * 1000);
 };
-const chessPp = document.querySelector('.chessPp');
-const chessName = document.querySelector('.chessUsername');
-const chessLeague = document.querySelector('.chessLeague');
-const chessBulletGames = document.querySelector('.chessBulletGames');
-const chessBulletRating = document.querySelector('.chessBulletRating');
-const chessBlitzGames = document.querySelector('.chessBlitzGames');
-const chessBlitzRating = document.querySelector('.chessBlitzRating');
-const chessRapidGames = document.querySelector('.chessRapidGames');
-const chessRapidRating = document.querySelector('.chessRapidRating');
-fetch(`https://api.chess.com/pub/player/diislay`, options)
-    .then(response => response.json())
-    .then(data => {
-        chessPp.src = data.avatar
-        chessName.innerText = data.username
-        chessLeague.src = "assets/images/" + data.league + ".png"
-        fetch(`https://api.chess.com/pub/player/diislay/stats`, options)
-            .then(response => response.json())
-            .then(data => {
-                chessBulletRating.innerText = data.chess_bullet.last.rating
-                chessBulletGames.innerText = data.chess_bullet.record.win + data.chess_bullet.record.loss + data.chess_bullet.record.draw
-                chessBlitzRating.innerText = data.chess_blitz.last.rating
-                chessBlitzGames.innerText = data.chess_blitz.record.win + data.chess_blitz.record.loss + data.chess_blitz.record.draw
-                chessRapidRating.innerText = data.chess_rapid.last.rating
-                chessRapidGames.innerText = data.chess_rapid.record.win + data.chess_rapid.record.loss + data.chess_rapid.record.draw
-            })
-    })
+
+setInterval(createLeaf, 300);
