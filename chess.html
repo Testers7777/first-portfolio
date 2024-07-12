@@ -85,6 +85,20 @@
                 chessRapidRating.innerText = data.chess_rapid.last.rating
                 chessRapidGames.innerText = data.chess_rapid.record.win + data.chess_rapid.record.loss + data.chess_rapid.record.draw
             })</script>
+                <script>const createPion = () => {
+                const pion = document.createElement('div');
+                pion.classList.add('pion');
+                pion.style.left = `${Math.random() * 100}vw`;
+                pion.style.top = `${Math.random() * -100}vh`;
+                pion.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                document.body.appendChild(pion);
+            
+                setTimeout(() => {
+                    pion.remove();
+                }, (Math.random() * 10 + 5) * 1000);
+            };
+            
+            setInterval(createPion, 300);</script>
 </body>
 
 </html>
