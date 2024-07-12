@@ -31,18 +31,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var typed = new Typed("#typed-output", options);
 });
-
-const createLeaf = () => {
-    const leaf = document.createElement('div');
-    leaf.classList.add('leaf');
-    leaf.style.left = `${Math.random() * 100}vw`;
-    leaf.style.top = `${Math.random() * -100}vh`;
-    leaf.style.animationDuration = `${Math.random() * 10 + 5}s`;
-    document.body.appendChild(leaf);
-
-    setTimeout(() => {
-        leaf.remove();
-    }, (Math.random() * 10 + 5) * 1000);
-};
-
-setInterval(createLeaf, 300);
