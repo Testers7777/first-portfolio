@@ -11,6 +11,8 @@
 </head>
 
 <body>
+    <h2 class="h2chess">Chess</h2>
+    <div class="mode"></div>
     <div class="chess">
         <div class="chessProfil">
             <div class="chessUsername"></div>
@@ -18,7 +20,7 @@
             <img class="chessLeague" src="" alt="">
         </div>
         <div class="chessModes">
-            <div class="chessNothing">Modes</div>
+            <div class="chessNothing"></div>
             <div class="chessGames">Games</div>
             <div class="chessRating">Rating</div>
         </div>
@@ -38,9 +40,7 @@
             <div class="chessRapidRating">Fetching...</div>
         </div>
     </div>
-    <div class="linksabout">
-        <a href="/index.html" rel="noopener noreferrer"><button class="menu sweep-to-top">Menu</button></a>
-    </div>
+        <a href="./index.html" rel="noopener noreferrer"><button class="menu sweep-to-top">Menu</button></a>
     <div class="foot">
         <ul class="icons">
             <li>
@@ -55,6 +55,36 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="script.js"></script>
+    <script>
+    const options = {
+        method: 'GET',
+    };
+        const chessPp = document.querySelector('.chessPp');
+        const chessName = document.querySelector('.chessUsername');
+        const chessLeague = document.querySelector('.chessLeague');
+        fetch(`https://api.chess.com/pub/player/diislay`, options)
+            .then(response => response.json())
+            .then(data => {
+                chessPp.src = data.avatar
+                chessName.innerText = data.username
+                chessLeague.src = "assets/images/" + data.league + ".png"
+            })
+        const chessBulletGames = document.querySelector('.chessBulletGames');
+        const chessBulletRating = document.querySelector('.chessBulletRating');
+        const chessBlitzGames = document.querySelector('.chessBlitzGames');
+        const chessBlitzRating = document.querySelector('.chessBlitzRating');
+        const chessRapidGames = document.querySelector('.chessRapidGames');
+        const chessRapidRating = document.querySelector('.chessRapidRating');
+            fetch(`https://api.chess.com/pub/player/diislay/stats`, options)
+            .then(response => response.json())
+            .then(data => {
+                chessBulletRating.innerText = data.chess_bullet.last.rating
+                chessBulletGames.innerText = data.chess_bullet.record.win + data.chess_bullet.record.loss + data.chess_bullet.record.draw
+                chessBlitzRating.innerText = data.chess_blitz.last.rating
+                chessBlitzGames.innerText = data.chess_blitz.record.win + data.chess_blitz.record.loss + data.chess_blitz.record.draw
+                chessRapidRating.innerText = data.chess_rapid.last.rating
+                chessRapidGames.innerText = data.chess_rapid.record.win + data.chess_rapid.record.loss + data.chess_rapid.record.draw
+            })</script>
 </body>
 
 </html>
