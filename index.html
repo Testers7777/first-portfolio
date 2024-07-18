@@ -9,14 +9,22 @@
     <link rel="shortcut icon" href="./logo.jpg" type="image/x-icon">
     <script src="https://kit.fontawesome.com/3141ec3c54.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 </head>
 
 <body>
+    <div class="flags">
+        <button class="butflag" onclick="changeLanguage('fr')"><img class="flag" src="assets/images/flags/fr.png" alt="Français"></button>
+        <button class="butflag" onclick="changeLanguage('en')"><img class="flag" src="assets/images/flags/us.png" alt="English"></button>
+    </div>
     <h2>DIISLAY</h2>
-    <span class="desc" id="typed-output"></span>
+    <div id="stars-container"></div>
+    <span class="desc" id="animated-text"></span>
     <div class="linksabout">
         <a href="./chess.html" rel="noopener noreferrer"><button class="aboutchess sweep-to-top">About chess</button></a>
         <a href="./projets.html" rel="noopener noreferrer"><button class="projets sweep-to-top">My projects</button></a>
+        <a href="./discord-profile.html" rel="noopener noreferrer"><button class="discord-card sweep-to-top">My discord</button></a>
     </div>
     <div class="foot">
         <ul class="icons">
@@ -32,12 +40,7 @@
             </li>
         </ul>
     </div>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="script.js"></script>
-        <script>const createLeaf = () => {
+    <script>const createLeaf = () => {
         const leaf = document.createElement('div');
         leaf.classList.add('leaf');
         leaf.style.left = `${Math.random() * 100}vw`;
@@ -51,6 +54,71 @@
     };
     
     setInterval(createLeaf, 300);</script>
+        <script>
+        const textData = {
+            en: [
+                "Hi !",
+                "My name is Tiago",
+                "I'am 14yo",
+                "I love oceanography",
+                "I'm a front-end developer'",
+                "I code just for fun"
+            ],
+            fr: [
+                "Salut !",
+                "Mon nom est Tiago",
+                "J'ai 14ans",
+                "J'aime beaucoup l'océanographie",
+                "Je suis un développeur front-end",
+                "Je code juste pour le plaisir"
+            ]
+        };
+
+        let currentLanguage = 'en';
+        let textIndex = 0;
+        let charIndex = 0;
+        const textElement = document.getElementById('animated-text');
+
+        let typingTimeout;
+        let erasingTimeout;
+
+        function typeText() {
+            if (charIndex < textData[currentLanguage][textIndex].length) {
+                textElement.innerHTML += textData[currentLanguage][textIndex].charAt(charIndex);
+                charIndex++;
+                typingTimeout = setTimeout(typeText, 50);
+            } else {
+                erasingTimeout = setTimeout(eraseText, 1000);
+            }
+        }
+
+        function eraseText() {
+            if (textElement.innerHTML.length > 0) {
+                textElement.innerHTML = textElement.innerHTML.slice(0, -1);
+                erasingTimeout = setTimeout(eraseText, 50);
+            } else {
+                textIndex = (textIndex + 1) % textData[currentLanguage].length;
+                charIndex = 0;
+                typingTimeout = setTimeout(typeText, 500);
+            }
+        }
+
+        function changeLanguage(language) {
+            clearTimeout(typingTimeout);
+            clearTimeout(erasingTimeout);
+            currentLanguage = language;
+            textIndex = 0;
+            charIndex = 0;
+            textElement.innerHTML = '';
+            setTimeout(() => {
+                typeText();
+            }, 500);
+
+            
+        }
+
+        window.onload = typeText;
+    </script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
