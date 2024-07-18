@@ -11,6 +11,7 @@
 </head>
 
 <body>
+    <div id="stars-container"></div>
     <h2 class="h2chess">Chess</h2>
     <div class="mode"></div>
     <div class="chess">
@@ -25,23 +26,23 @@
             <div class="chessRating">Rating</div>
         </div>
         <div class="chessFirstRow">
-            <div class="chessBullet"><img src="assets/images/bullet.png" alt="" srcset=""></div>
+            <div class="chessBullet"><img src="assets/images/chess/bullet.png" alt="" srcset=""></div>
             <div class="chessBulletGames">Fetching...</div>
             <div class="chessBulletRating">Fetching...</div>
         </div>
         <div class="chessSecondRow">
-            <div class="chessBlitz"><img src="assets/images/blitz.png" alt="" srcset=""></div>
+            <div class="chessBlitz"><img src="assets/images/chess/blitz.png" alt="" srcset=""></div>
             <div class="chessBlitzGames">Fetching...</div>
             <div class="chessBlitzRating">Fetching...</div>
         </div>
         <div class="chessThirdRow">
-            <div class="chessRapid"><img src="assets/images/rapid.png" alt="" srcset=""></div>
+            <div class="chessRapid"><img src="assets/images/chess/rapid.png" alt="" srcset=""></div>
             <div class="chessRapidGames">Fetching...</div>
             <div class="chessRapidRating">Fetching...</div>
         </div>
     </div>
         <a href="./index.html" rel="noopener noreferrer"><button class="menu sweep-to-top">Menu</button></a>
-    <div class="foot">
+        <div class="foot">
         <ul class="icons">
             <li>
                 <a class="f" id="chess" href="https://www.chess.com/member/diislay">
@@ -50,55 +51,68 @@
             </li>
         </ul>
     </div>
+    <script>
+        const chessBulletGames = document.querySelector('.chessBulletGames');
+const chessBlitzGames = document.querySelector('.chessBlitzGames');
+const chessRapidGames = document.querySelector('.chessRapidGames');
+const chessRapidRating = document.querySelector('.chessRapidRating');
+const chessBlitzRating = document.querySelector('.chessBlitzRating');
+const chessBulletRating = document.querySelector('.chessBulletRating');
+
+const chessName = document.querySelector('.chessUsername');
+
+const fetchUserInfo = async (username) => {
+    try {
+        const response = await fetch(`https://lichess.org/api/user/${username}`);
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP! Statut: ${response.status}`);
+        }
+        const userInfo = await response.json();
+
+        const BlitzGames = userInfo.perfs.blitz.games;
+        const BulletGames = userInfo.perfs.bullet.games;
+        const RapidGames = userInfo.perfs.rapid.games;
+        const RapidRating = userInfo.perfs.rapid.rating;
+        const BlitzRating = userInfo.perfs.blitz.rating;
+        const BulletRating = userInfo.perfs.bullet.rating;
+
+        const pseudo = userInfo.username;
+
+        chessBlitzGames.innerText = `${BlitzGames}`
+        chessBulletGames.innerText = `${BulletGames}`
+        chessRapidGames.innerText = `${RapidGames}`
+        chessBlitzRating.innerText = `${BlitzRating}`
+        chessBulletRating.innerText = `${BulletRating}`
+        chessRapidRating.innerText = `${RapidRating}`
+
+        chessName.innerText = `${pseudo}`
+        
+    } catch (error) {
+        console.error('Erreur:', error);
+    }
+};
+
+fetchUserInfo('diislay');
+
+const chessPp = document.querySelector('.chessPp');
+const chessLeague = document.querySelector('.chessLeague');
+
+const options = {
+    method: 'GET',
+};
+
+fetch(`https://api.chess.com/pub/player/diislay`, options)
+.then(response => response.json())
+.then(data => {
+    chessPp.src = data.avatar
+    chessLeague.src = "assets/images/chess/" + data.league + ".png"
+})
+    </script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="script.js"></script>
-    <script>
-    const options = {
-        method: 'GET',
-    };
-        const chessPp = document.querySelector('.chessPp');
-        const chessName = document.querySelector('.chessUsername');
-        const chessLeague = document.querySelector('.chessLeague');
-        fetch(`https://api.chess.com/pub/player/diislay`, options)
-            .then(response => response.json())
-            .then(data => {
-                chessPp.src = data.avatar
-                chessName.innerText = data.username
-                chessLeague.src = "assets/images/" + data.league + ".png"
-            })
-        const chessBulletGames = document.querySelector('.chessBulletGames');
-        const chessBulletRating = document.querySelector('.chessBulletRating');
-        const chessBlitzGames = document.querySelector('.chessBlitzGames');
-        const chessBlitzRating = document.querySelector('.chessBlitzRating');
-        const chessRapidGames = document.querySelector('.chessRapidGames');
-        const chessRapidRating = document.querySelector('.chessRapidRating');
-            fetch(`https://api.chess.com/pub/player/diislay/stats`, options)
-            .then(response => response.json())
-            .then(data => {
-                chessBulletRating.innerText = data.chess_bullet.last.rating
-                chessBulletGames.innerText = data.chess_bullet.record.win + data.chess_bullet.record.loss + data.chess_bullet.record.draw
-                chessBlitzRating.innerText = data.chess_blitz.last.rating
-                chessBlitzGames.innerText = data.chess_blitz.record.win + data.chess_blitz.record.loss + data.chess_blitz.record.draw
-                chessRapidRating.innerText = data.chess_rapid.last.rating
-                chessRapidGames.innerText = data.chess_rapid.record.win + data.chess_rapid.record.loss + data.chess_rapid.record.draw
-            })</script>
-                <script>const createPion = () => {
-                const pion = document.createElement('div');
-                pion.classList.add('pion');
-                pion.style.left = `${Math.random() * 100}vw`;
-                pion.style.top = `${Math.random() * -100}vh`;
-                pion.style.animationDuration = `${Math.random() * 10 + 5}s`;
-                document.body.appendChild(pion);
-            
-                setTimeout(() => {
-                    pion.remove();
-                }, (Math.random() * 10 + 5) * 1000);
-            };
-            
-            setInterval(createPion, 300);</script>
 </body>
 
 </html>
