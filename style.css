@@ -700,3 +700,18 @@ body {
   border: #fff 1px solid;
   color: #fff;
 }
+
+.beta {
+  position: relative;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--blue);
+  background-color: #2a3038a8;
+  padding: 10px;
+  border-top: 40px solid #2a3038a8;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  text-align: center;
+  justify-content: center;
+}
