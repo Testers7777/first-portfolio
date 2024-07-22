@@ -26,6 +26,7 @@
         <a href="./projets.html" rel="noopener noreferrer"><button class="projets sweep-to-top">My projects</button></a>
         <a href="./discord-profile.html" rel="noopener noreferrer"><button class="discord-card sweep-to-top">My discord</button></a>
     </div>
+    <p class="beta">This site is currently a beta version, bugs will be fixed in the future</p>
     <div class="foot">
         <ul class="icons">
             <li>
@@ -103,6 +104,16 @@
             }
         }
 
+        const beta = document.querySelector('.beta');
+
+        function beta2(language) {
+            if ( language == "fr") {
+                beta.innerText="Ce site n'est qu'une beta pour l'instant si vous voyez des problèmes ils seront modifiés dans le futur"
+            } else {
+                beta.innerText="This site is currently a beta version, bugs will be fixed in the future"
+            }
+        }
+
         function changeLanguage(language) {
             clearTimeout(typingTimeout);
             clearTimeout(erasingTimeout);
@@ -112,6 +123,7 @@
             textElement.innerHTML = '';
             setTimeout(() => {
                 typeText();
+                beta2(currentLanguage);
             }, 500);
 
             
